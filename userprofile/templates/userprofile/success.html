@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Update Successful</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .dashboard_btn {
+            font-size: 20px;
+            line-height: 16.78px;
+            font-weight: 500;
+            border-radius: 4px;
+            padding: 10px 10px;
+            color: #ffffff;
+            /* background-color: #2D60FF; */
+            background: linear-gradient(107deg, #4caf50, #2d9e2b 53%, #1c7526);
+            cursor: pointer;
+            border: none;
+            margin-top: 6px;
+        }
+    </style>
+</head>
+<body>
+
+{% block content %}
+  <div class="alert alert-success" role="alert">
+    <h2>Profile Update Submitted Successfully</h2>
+    <p>Dear {{ username }},</p>
+    <p>Your profile update has been successfully submitted. Our team will review the changes, and once verified, we will send you a confirmation email regarding the update.</p>
+    <p>Thank you for keeping your profile up to date with us!</p>
+    <a href="{% url 'userprofile:dashboard' %}" class="dashboard_btn btn">Return to Dashboard</a>
+  </div>
+{% endblock %}
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+
+
+{% block content %}
+  <div class="container">
+    <div class="alert alert-success mt-5">
+      <h2>Wallet Connected Successfully!</h2>
+      <p>Your wallet has been successfully connected to the system. You can now use it for auto withdrawals.</p>
+      <a href="{% url 'select_wallet' %}" class="btn btn-primary">Go Back to Wallet Selection</a>
+    </div>
+  </div>
+{% endblock %}

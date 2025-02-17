@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en"> {% load static %}
+  <!-- Load the static template tag -->
+  <head>
+    <title>Dashboard | {{ user.username|capfirst }}</title>
+    <meta charset="UTF-8">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <!-- Open Graph image (for social media sharing) -->
+    <meta property="og:image" content="{% static 'images/logo.png' %}">
+    <!-- Meta description and keywords -->
+    <meta name="description" content="Seed Investment - The best modern crypto investment platform for easy and fast transactions. Create an account with us today!">
+    <meta name="keywords" content="Investment, Crypto, finance, financial institution">
+    <meta name="author" content="Alphatecks Technologies">
+    <!-- Viewport settings for responsiveness -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS files -->
+    <link rel="shortcut icon" href="{% static 'assets/uploads/all/42c5686279e9468fd4f27be77ac669f1.png' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.min.css' %}">
+  </head>
+  <body>
+    <!-- Structuring the left fixed navigation tab -->
+    <div id="google_translate_element"></div>
+    <div class="fixed-left-nav">
+      <div class="logo-img-container">
+       <a href="{% url 'home'%}">
+        <img class="logo-img" src="{% static 'assets/images/log.png' %}" alt="Logo">
+       </a>
+      </div>
+      <button class="tablinks" onclick="openCity(event, 'Dashboard')" id="defaultOpen">
+        <section class="tab-buttons-box">
+          <div class="tab-buttons-box-1">
+            <i class="fa fa-home" aria-hidden="true"></i>
+          </div>
+          <div class="tab-buttons-box-2"> Dashboard </div>
+        </section>
+      </button>
+      <button class="tablinks" onclick="openCity(event, 'Transactions')">
+        <section class="tab-buttons-box">
+          <div class="tab-buttons-box-1">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+          </div>
+          <div class="tab-buttons-box-2"> Transactions </div>
+        </section>
+      </button>
+        <!-- <button class="tablinks" onclick="openCity(event, 'Accounts')"><section class="tab-buttons-box"><div class="tab-buttons-box-1"><i class="fa-solid fa-user"></i></div><div class="tab-buttons-box-2">
+                        Account Statement
+                    </div></section></button>  -->
+
+      <button class="tablinks" onclick="openCity(event, 'Investment')">
+        <section class="tab-buttons-box">
+          <div class="tab-buttons-box-1">
+            <i class="fa-solid fa-sack-dollar"></i>
+          </div>
+          <div class="tab-buttons-box-2"> <a href="{% url 'select_wallet' %}" style="text-decoration: none;" >Auto Payout</a></div>
+        </section>
+      </button>
+      <button class="tablinks" onclick="openCity(event, 'CreditCards')">
+        <section class="tab-buttons-box">
+          <div class="tab-buttons-box-1">
+            <i class="fa-solid fa-bank"></i>
+          </div>
+          <div class="tab-buttons-box-2"> Deposit crypto </div>
+        </section>
+      </button>
+      <button class="tablinks" onclick="openCity(event, 'Withdrawal')">
+        <section class="tab-buttons-box">
+          <div class="tab-buttons-box-1">
+            <i class="fa-solid fa-download"></i>
+          </div>
+          <div class="tab-buttons-box-2"> Withdraw crypto </div>
+        </section>
+      </button>
+      <button class="tablinks" onclick="openCity(event, 'Setting')">
+        <section class="tab-buttons-box">
+          <div class="tab-buttons-box-1">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <div class="tab-buttons-box-2"> Profile </div>
+        </section>
+      </button>
+
+
+      
+      <button class="tablinks" onclick="">
+        <section class="tab-buttons-box">
+          <div class="tab-buttons-box-1">
+            <div class="rotate__180deg">
+              <i class="fa-solid fa-right-from-bracket"></i>
+            </div>
+          </div>
+          <div class="tab-buttons-box-2"> <a href="{% url 'userprofile:logout' %}" style="text-decoration: none; color:red;" >Log Out</a></div>
+        </section>
+      </button>
+    </div>
+    <!-- Structuring the Mobile tab Header -->
+    <section class="mobile-head-con">
+      <!-- Mobile side nav contents -->
+      <div id="mySidenavM" class="sidenavM">
+        <!--<div id="sidenavM">-->
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <!-- Structuring the Mobile left fixed navigation tab -->
+        <div class="fixed-left-nav-mobile">
+          <div class="logo-img-container">
+            <a href="">
+              <img class="logo-img" src="{% static 'assets/images/log.png' %}" alt="Logo">
+            </a>
+          </div>
+          <button class="tablinks" onclick="openCity(event, 'Dashboard')" id="defaultOpen">
+            <section class="tab-buttons-box">
+              <div class="tab-buttons-box-1">
+                <i class="fa fa-home" aria-hidden="true"></i>
+              </div>
+              <div class="tab-buttons-box-2"> Dashboard </div>
+            </section>
+          </button>
+          <button class="tablinks" onclick="openCity(event, 'Investment')">
+            <section class="tab-buttons-box" onclick="window.location.href='{% url 'select_wallet' %}';" style="cursor: pointer;">
+              <div class="tab-buttons-box-1">
+                <i class="fa-solid fa-sack-dollar"></i>
+              </div>
+              <div class="clickable-div">
+                <!-- Your content here -->
+                Auto Payout
+              </div>
+            </section>
+            
+          </button>
+          <button class="tablinks" onclick="openCity(event, 'Transactions')">
+            <section class="tab-buttons-box">
+              <div class="tab-buttons-box-1">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+              </div>
+              <div class="tab-buttons-box-2"> Transactions </div>
+            </section>
+          </button>
+
+          <button class="tablinks" onclick="openCity(event, 'CreditCards')">
+            <section class="tab-buttons-box">
+              <div class="tab-buttons-box-1">
+                <i class="fa fa-bank"></i>
+              </div>
+              <div class="tab-buttons-box-2"> Deposit crypto </div>
+            </section>
+          </button>
+          <button class="tablinks" onclick="openCity(event, 'Withdrawal')">
+            <section class="tab-buttons-box">
+              <div class="tab-buttons-box-1">
+                <i class="fa-solid fa-download"></i>
+              </div>
+              <div class="tab-buttons-box-2"> Withdraw crypto </div>
+            </section>
+          </button>
+          <button class="tablinks" onclick="openCity(event, 'Setting')">
+            <section class="tab-buttons-box">
+              <div class="tab-buttons-box-1">
+                <i class="fa-solid fa-gear"></i>
+              </div>
+              <div class="tab-buttons-box-2"> Profile </div>
+            </section>
+          </button>
+          <button class="tablinks" onclick="">
+            <section class="tab-buttons-box" onclick="window.location.href='{% url 'userprofile:logout' %}';" style="cursor: pointer;">
+              <div class="tab-buttons-box-1">
+                <div class="rotate__180deg">
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                </div>
+              </div>
+              <div class="tab-buttons-box-2">
+                <span style="text-decoration: none; color:red;">Log Out</span>
+              </div>
+            </section>
+            
+          </button>
+        </div>
+        <!-- End tag for Structuring the Mobile left fixed navigation tab -->
+      </div>
+      <!-- Mobile side nav contents -->
+    </section>
+    <div id="Dashboard" class="tabcontent">
+      <!-- Opening tag for DASHBOARD TAB -->
+      <!-- Structuring the Mobile tab Header -->
+      <section class="mobile-head-con">
+        <div class="header-wrapper">
+          <!-- Main wrapper with width of 84% -->
+          <div class="mobile-head">
+            <span style="cursor: pointer;" onclick="openNav()">
+              <i class="fa-solid fa-bars" style="font-size: 25px; color: #343C6A;"></i>
+            </span>
+            <!--<div id="toggle"></div>-->
+            <div class="header-wrapper-1-items">
+              <h1>Welcome, {{ user.username|capfirst }}</h1>
+            </div>
+            <!--<div class="header-wrapper-2-items">-->
+            <!--    <img class="profile-picture" src="images/profile-pic.png" alt="Profile Picture">-->
+            <!--</div>-->
+            <div class="replace__profile__image"></div>
+          </div>
+          <form action="" method="" style="padding-bottom: 10px;">
+            <section class="nav-search-bar">
+              <input type="text" class="fa fa-search" name="navSearch" id="navSearch1" placeholder="Search for something">
+            </section>
+          </form>
+        </div>
+        <!-- Main wrapper with width of 84% -->
+      </section>
+      <section class="header">
+        <div class="header-wrapper">
+          <div class="header-wrapper-1">
+            <div class="header-wrapper-1-items">
+              <h1>Welcome, {{ user.username|capfirst }}</h1>
+              <!-- <p>User data not found.</p> -->
+            </div>
+          </div>
+          <div class="header-wrapper-2">
+            <div class="header-wrapper-2-items">
+              <form action="" method="">
+                <section class="nav-search-bar">
+                  <input type="text" class="fa fa-search" name="navSearch" id="navSearch1" placeholder="Search for something" style="font-family:Arial, FontAwesome">
+                </section>
+              </form>
+              <span class="nav-icons-box">
+                <i class="fa fa-cog tab-icons" aria-hidden="true" style="color: #718EBF;"></i>
+              </span>
+              <span class="nav-icons-box">
+                <i class="fa-regular fa-bell" style="color: #FE5C73; font-size: 30px;"></i>
+              </span>
+              <!--<img class="profile-picture" src="images/profile-pic.png" alt="Profile Picture">-->
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="content-container">
+        <div class="header-wrapper">
+          <!-- Main wrapper with width of 92% -->
+          <!-- ################### Structuring the ACCOUNTS SECTION A ################### -->
+          <section class="accounts-sec1">
+            <div class="accounts-sec1-box">
+              <div class="accounts-sec1-items">
+                <div class="accounts-sec1-items1">
+                  <span class="accounts-circle-box" style="background-color: #FFF5D9;">
+                    <i class="fa-solid fa-sack-dollar" style="color: #FFBB38;"></i>
+                  </span>
+                </div>
+                <div class="accounts-sec1-items2">
+                  <p>My Balance</p>
+                  <span>${{ profile.balance }}</span>
+                  <!-- <p>User data not found.</p> -->
+                </div>
+              </div>
+            </div>
+            <div class="accounts-sec1-box">
+              <div class="accounts-sec1-items">
+                <div class="accounts-sec1-items1">
+                  <span class="accounts-circle-box" style="background-color: #E7EDFF;">
+                    <i class="fa-solid fa-hand-holding-dollar" style="color: #396AFF;"></i>
+                  </span>
+                </div>
+                <div class="accounts-sec1-items2">
+                  <p>Profits earned</p>
+                  <span>${{ profile.return_of_investment }}</span>
+                  <!-- <p>User data not found.</p> -->
+                </div>
+              </div>
+            </div>
+            <div class="accounts-sec1-box">
+              <div class="accounts-sec1-items">
+                <div class="accounts-sec1-items1">
+                  <span class="accounts-circle-box" style="background-color: #DCFAF8;">
+                    <i class="fa-solid fa-piggy-bank" style="color: #16DBCC;"></i>
+                  </span>
+                </div>
+                <div class="accounts-sec1-items2">
+                  <p>Referral Bonus</p>
+                  <span>${{ profile.referral_reward }}</span>
+                  <!-- <p>User data not found.</p> -->
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </div>
+    <!-- Closing tag for DASHBOARD TAB -->
+    <div id="Transactions" class="tabcontent">
+      <!-- Opening tag for TRANSACTIONS TAB -->
+      <section class="mobile-head-con">
+        <div class="header-wrapper">
+          <!-- Main wrapper with width of 84% -->
+          <div class="mobile-head">
+            <span style="cursor: pointer;" onclick="openNav()">
+              <i class="fa-solid fa-bars" style="font-size: 25px; color: #343C6A;"></i>
+            </span>
+            <div class="header-wrapper-1-items">
+              <h1>Transactions</h1>
+            </div>
+            <div class="replace__profile__image"></div>
+          </div>
+          <form action="" method="" style="padding-bottom: 10px;">
+            <section class="nav-search-bar">
+              <input type="text" class="fa fa-search" name="navSearch" id="navSearch1" placeholder="Search for something">
+            </section>
+          </form>
+        </div>
+        <!-- Main wrapper with width of 84% -->
+      </section>
+      <section class="header">
+        <div class="header-wrapper">
+            <div class="header-wrapper-1">
+                <div class="header-wrapper-1-items d-flex justify-content-between w-100">
+                    <!-- Transactions header -->
+                    <h1>Transactions</h1>
+                    <!-- 'View All' button with extra margin -->
+                    <div class="my-auto ml-5">  <!-- Increased left margin using ml-5 -->
+                        <!-- <a href="{% url 'userprofile:transaction_statement' %}" class="btn btn-primary" style="font-weight: bold;">View All</a> -->
+                    </div>
+                </div>
+            </div>
+            <div class="header-wrapper-2">
+                <div class="header-wrapper-2-items">
+                    <form action="" method="">
+                        <section class="nav-search-bar">
+                            <!-- Search Bar here (if needed) -->
+                        </section>
+                    </form>
+                    <span class="nav-icons-box">
+                        <i class="fa fa-cog tab-icons" aria-hidden="true" style="color: #718EBF;"></i>
+                    </span>
+                    <span class="nav-icons-box">
+                        <i class="fa-regular fa-bell" style="color: #FE5C73; font-size: 30px;"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="content-container">
+        <div class="header-wrapper">
+            <div style="width: 100%; margin: 0; padding: 0;">
+                <h2 class="content-h2">Recent Transactions</h2>
+                <h2 class="content-h2"><a href="{% url 'userprofile:transaction_statement'%}" style="text-decoration: none; font-size: medium;">View All</a></h2>
+                <div id="AllTransactions" class="tabcontentrt">
+                    <div class="recent-transactions-head">
+                        <div class="rt-box-2">
+                            <span>Transaction ID</span>
+                        </div>
+                        <div class="rt-box-1">
+                            <span>Description</span>
+                        </div>
+                        <div class="rt-box-3">
+                            <span>Type</span>
+                        </div>
+                        <div class="rt-box-5">
+                            <span>Date</span>
+                        </div>
+                        <div class="rt-box-6">
+                            <span>Amount</span>
+                        </div>
+                        <div class="rt-box-7">
+                            <span>Status</span>
+                        </div>
+                    </div>
+    
+                    {% for transaction in transactions %}
+                        <div class="mySlidessa fadesa">
+                            <div class="recent-transactions-body">
+                                <div class="rt-box-2">
+                                    <span>#{{ transaction.id }}</span>
+                                </div>
+                                <div class="rt-box-1">
+                                    <span>{{ transaction.description }}</span>
+                                </div>
+                                <div class="rt-box-3">
+                                    <span>{{ transaction.transaction_type|title }}</span>
+                                </div>
+                                <div class="rt-box-5">
+                                    <span>{{ transaction.created_at|date:"d M, H:i A" }}</span>
+                                </div>
+                                <div class="rt-box-6">
+                                    <span>${{ transaction.amount }}</span>
+                                </div>
+                                <div class="rt-box-7">
+                                    <span class="status" data-status="{{ transaction.status }}">{{ transaction.status|title }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <div class="mySlidessa fadesa">
+                            <div class="recent-transactions-body">
+                                <div class="rt-box-1">
+                                    <span>No transactions found.</span>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    
+      <style>
+        .status-pending {
+          color: red;
+          font-weight: bold;
+        }
+
+        .status-approved {
+          color: green;
+          font-weight: bold;
+        }
+
+        .status-rejected {
+          color: grey;
+          font-weight: bold;
+        }
+
+        /* Additional styling for table */
+        .recent-transactions-head {
+          display: flex;
+          justify-content: space-between;
+          font-weight: bold;
+        }
+
+        .recent-transactions-body {
+          display: flex;
+          justify-content: space-between;
+        }
+
+        .rt-box-1,
+        .rt-box-2,
+        .rt-box-3,
+        .rt-box-5,
+        .rt-box-6,
+        .rt-box-7 {
+          flex: 1;
+          padding: 10px;
+        }
+      </style>
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          // Get all transaction status elements
+          const statuses = document.querySelectorAll('.status');
+          // Loop through each status and apply the correct color class
+          statuses.forEach(function(statusElement) {
+            const status = statusElement.dataset.status; // Get the status value (pending, approved, rejected)
+            if (status === 'pending') {
+              statusElement.classList.add('status-pending');
+            } else if (status === 'approved') {
+              statusElement.classList.add('status-approved');
+            } else {
+              statusElement.classList.add('status-rejected');
+            }
+          });
+        });
+      </script>
+    </div>
+    <!-- Closing tag for TRANSACTIONS TAB -->
+    <div id="Accounts" class="tabcontent">
+      <!-- Opening tag for ACCOUNTS TAB -->
+      <!-- Structuring the Mobile tab Header -->
+      <section class="mobile-head-con">
+        <div class="header-wrapper">
+          <!-- Main wrapper with width of 84% -->
+          <div class="mobile-head">
+            <span style="cursor: pointer;" onclick="openNav()">
+              <i class="fa-solid fa-bars" style="font-size: 25px; color: #343C6A;"></i>
+            </span>
+            <!--<div id="toggle"></div>-->
+            <div class="header-wrapper-1-items">
+              <h1>Accounts</h1>
+            </div>
+            <!--<div class="header-wrapper-2-items">-->
+            <!--    <img class="profile-picture" src="images/profile-pic.png" alt="Profile Picture">-->
+            <!--</div>-->
+            <div class="replace__profile__image"></div>
+          </div>
+          <form action="" method="" style="padding-bottom: 10px;">
+            <section class="nav-search-bar">
+              <input type="text" class="fa fa-search" name="navSearch" id="navSearch1" placeholder="Search for something">
+            </section>
+          </form>
+        </div>
+        <!-- Main wrapper with width of 84% -->
+      </section>
+      <section class="header">
+        <div class="header-wrapper">
+          <div class="header-wrapper-1">
+            <div class="header-wrapper-1-items">
+              <h1>Accounts</h1>
+            </div>
+          </div>
+          <div class="header-wrapper-2">
+            <div class="header-wrapper-2-items">
+              <form action="" method="">
+                <section class="nav-search-bar">
+                  <input type="text" class="fa fa-search" name="navSearch" id="navSearch1" placeholder="Search for something" style="font-family:Arial, FontAwesome">
+                </section>
+              </form>
+              <span class="nav-icons-box">
+                <i class="fa fa-cog tab-icons" aria-hidden="true" style="color: #718EBF;"></i>
+              </span>
+              <span class="nav-icons-box">
+                <i class="fa-regular fa-bell" style="color: #FE5C73; font-size: 30px;"></i>
+              </span>
+              <!--<img class="profile-picture" src="images/profile-pic.png" alt="Profile Picture">-->
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    <!-- Closing tag for ACCOUNTS TAB -->
+    <div id="Investment" class="tabcontent">
+      <!-- Opening tag for INVESTMENT TAB -->
+      <!-- Structuring the Mobile tab Header -->
+      <section class="mobile-head-con">
+        <div class="header-wrapper">
+          <!-- Main wrapper with width of 84% -->
+          <div class="mobile-head">
+            <span style="cursor: pointer;" onclick="openNav()">
+              <i class="fa-solid fa-bars" style="font-size: 25px; color: #343C6A;"></i>
+            </span>
+            <!--<div id="toggle"></div>-->
+            <div class="header-wrapper-1-items">
+              <h1>Auto Payout</h1>
+            </div>
+            <!--<div class="header-wrapper-2-items">-->
+            <!--    <img class="profile-picture" src="images/profile-pic.png" alt="Profile Picture">-->
+            <!--</div>-->
+            <div class="replace__profile__image"></div>
+          </div>
+          <form action="" method="" style="padding-bottom: 10px;">
+            <section class="nav-search-bar">
+              <input type="text" class="fa fa-search" name="navSearch" id="navSearch1" placeholder="Search for something">
+            </section>
+          </form>
+        </div>
+        <!-- Main wrapper with width of 84% -->
+      </section>
+      <section class="header">
+        <div class="header-wrapper">
+          <div class="header-wrapper-1">
+            <div class="header-wrapper-1-items">
+              <h1>Auto Payouts</h1>
+            </div>
+          </div>
+          <div class="header-wrapper-2">
+            <div class="header-wrapper-2-items">
+              <form action="" method="">
+                <section class="nav-search-bar">
+                  <input type="text" class="fa fa-search" name="navSearch" id="navSearch1" placeholder="Search for something" style="font-family:Arial, FontAwesome">
+                </section>
+              </form>
+              <span class="nav-icons-box">
+                <i class="fa fa-cog tab-icons" aria-hidden="true" style="color: #718EBF;"></i>
+              </span>
+              <span class="nav-icons-box">
+                <i class="fa-regular fa-bell" style="color: #FE5C73; font-size: 30px;"></i>
+              </span>
+              <!--<img class="profile-picture" src="images/profile-pic.png" alt="Profile Picture">-->
+            </div>
+          </div>
+        </div>
+      </section>
+      </section>
+    </div>
+    <!-- Closing tag for INVESTMENT TAB -->
+    <div id="CreditCards" class="tabcontent">
+      <!-- Opening tag for CREDIT TAB -->
+      <!-- Structuring the Mobile tab Header -->
+      <section class="mobile-head-con">
+        <div class="header-wrapper">
+          <!-- Main wrapper with width of 84% -->
+          <div class="mobile-head">
+            <span style="cursor: pointer;" onclick="openNav()">
+              <i class="fa-solid fa-bars" style="font-size: 25px; color: #343C6A;"></i>
+            </span>
+            <!--<div id="toggle"></div>-->
+            <div class="header-wrapper-1-items">
+              <h1>Deposit crypto</h1>
+            </div>
+            <!--<div class="header-wrapper-2-items">-->
+            <!--    <img class="profile-picture" src="images/profile-pic.png" alt="Profile Picture">-->
+            <!--</div>-->
+            <div class="replace__profile__image"></div>
+          </div>
+          <form action="" method="" style="padding-bottom: 10px;">
+            <section class="nav-search-bar">
+              <input type="text" class="fa fa-search" name="navSearch" id="navSearch1" placeholder="Search for something">
+            </section>
+          </form>
+        </div>
+        <!-- Main wrapper with width of 84% -->
+      </section>
+      <section class="header">
+        <div class="header-wrapper">
+          <div class="header-wrapper-1">
+            <div class="header-wrapper-1-items">
+              <h1>Deposit crypto</h1>
+            </div>
+          </div>
+          <div class="header-wrapper-2">
+            <div class="header-wrapper-2-items">
+              <form action="" method="">
+                <section class="nav-search-bar">
+                  <input type="text" class="fa fa-search" name="navSearch" id="navSearch1" placeholder="Search for something" style="font-family:Arial, FontAwesome">
+                </section>
+              </form>
+              <span class="nav-icons-box">
+                <i class="fa fa-cog tab-icons" aria-hidden="true" style="color: #718EBF;"></i>
+              </span>
+              <span class="nav-icons-box">
+                <i class="fa-regular fa-bell" style="color: #FE5C73; font-size: 30px;"></i>
+              </span>
+              <!--<img class="profile-picture" src="images/profile-pic.png" alt="Profile Picture">-->
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="content-container">
+        <div class="header-wrapper">
+          <!-- Main wrapper with width of 92% -->
+        </div>
+        <!-- Main wrapper with width of 92% -->
+      </section>
+      <!-- DEPOSIT CRYPTO -->
+      <section class="content-container">
+        <div class="header-wrapper" style="padding-bottom: 30px;">
+          <!-- Main wrapper with width of 92% -->
+          <!-- Structuring section 2 of CREDIT CARDS section -->
+          <div class="accounts-sec-2">
+            <div class="accounts-sec-2a">
+              <h2 class="content-h2">Make a deposit</h2>
+              <div class="accounts-sec-2a-container">
+                <p>When you make a deposit here be sure that the system will update your balance in minutes upon verification, your deposited amount is secured as it will be seen in our database.</p> 
+                {% block content %}
+                <h1>Deposit Funds</h1> 
+                {% if messages %}
+                <ul class="messages"> {% for message in messages %}
+                   <li class="message">{{ message }}</li> 
+                   {% endfor %} </ul>
+                  {% endif %}
+                <form method="POST" action="{% url 'investment:deposit_view' %}">
+                  {% csrf_token %}
+                  <div class="container mt-4">
+                      <!-- Investment Plan Select -->
+                      <div class="form-group">
+                          <label for="id_selected_investment_plan">Select Investment Plan:</label>
+                          <select name="selected_investment_plan" class="form-control" id="id_selected_investment_plan" style="background-color: #f0f0f0; font-size: 16px;">
+                              {% for plan in investment_plans %}
+                                  <option value="{{ plan.id }}">
+                                      {{ plan.name }} - {{ plan.interest_rate }}% ROI for {{ plan.duration_days }} days
+                                  </option>
+                              {% endfor %}
+                          </select>
+                      </div>
+          
+                      <!-- Wallet Selection -->
+                      <div class="form-group">
+                          <label for="id_selected_wallet">Select Wallet:</label>
+                          <select name="selected_wallet" class="form-control" id="id_selected_wallet" required>
+                              <option value="">Select a Wallet</option>
+                              {% for wallet in wallets %}
+                                  <option value="{{ wallet.id }}" data-name="{{ wallet.name }}" data-address="{{ wallet.wallet_address }}">
+                                      {{ wallet.name }}
+                                  </option>
+                              {% endfor %}
+                          </select>
+                      </div>
+              
+                      <!-- Wallet Address (auto-filled when a wallet is selected) -->
+                      <div class="form-group">
+                          <label for="id_wallet_address">Wallet Address:</label>
+                          <input type="text" name="wallet_address" class="form-control" placeholder="Wallet Address" maxlength="255" required="" id="id_wallet_address" readonly>
+                      </div>
+
+                      <!-- Coin Name Input (will be populated with wallet name) -->
+                      <div class="form-group">
+                        <label for="id_coinName">Coin Name:</label>
+                        <input type="text" name="coinName" class="form-control" placeholder="Coin Name" maxlength="255" required="" id="id_coinName" readonly>
+                    </div>
+
+
+                        <!-- Amount Deposit -->
+                        <div class="form-group">
+                          <label for="id_amountDeposit">Amount Deposit:</label>
+                          <input type="number" name="amountDeposit" class="form-control" placeholder="Amount Deposit" min="0.01" step="0.01" required="" id="id_amountDeposit">
+                      </div>
+              
+              
+                    <!-- Payment Date -->
+                    <div class="form-group">
+                      <label for="id_paymentDate">Payment Date:</label>
+                      <input type="date" name="paymentDate" class="form-control" placeholder="Payment Date" required="" id="id_paymentDate">
+                  </div>
+
+
+                      <!-- Submit Button -->
+                       <div>
+                      <button type="submit" class="transaction_btn">Submit Deposit</button>
+                    </div>
+                  </div>
+              </form>
+              
+              <script>
+                  // JavaScript to update the Coin Name and Wallet Address when a wallet is selected
+                  document.getElementById('id_selected_wallet').addEventListener('change', function() {
+                      var selectedWallet = this.options[this.selectedIndex];
+                      var walletName = selectedWallet.getAttribute('data-name'); // Get the wallet name
+                      var walletAddress = selectedWallet.getAttribute('data-address'); // Get the wallet address
+                      
+                      // Set the wallet name in the Coin Name input
+                      document.getElementById('id_coinName').value = walletName; 
+                      
+                      // Set the wallet address in the Wallet Address input
+                      document.getElementById('id_wallet_address').value = walletAddress; 
+                  });
+              </script>
+              
+              
+              
+                {% endblock %}
+
+                <style>
+                  .container {
+                      max-width: 600px;
+                      margin: 0 auto;
+                      padding: 20px;
+                      background-color: #f9f9f9;
+                      border-radius: 8px;
+                      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                  }
+                  
+                  h2 {
+                      text-align: center;
+                      color: #333;
+                  }
+                  
+                  .form-group {
+                      margin-bottom: 15px;
+                  }
+              
+                  /* Ensures that all form inputs are the same size */
+                  .form-control {
+                      width: 100%;  /* Makes all input fields take up the full container width */
+                      padding: 10px;
+                      font-size: 16px;
+                      border-radius: 5px;
+                      border: 1px solid #ccc;
+                  }
+              
+                  /* Styling for the submit button */
+                  .transaction_btn{
+                        font-size:20px;
+                        line-height: 16.78px;
+                        font-weight: 500;
+                        border-radius: 4px;
+                        padding: 16px 10px;
+                        color: #ffffff;
+                        /* background-color: #2D60FF; */
+                        background: linear-gradient(107deg, #f0a, #9c42f5 53%, #5d2de1);
+                        cursor: pointer;
+                        border: none;
+                        margin-top: 6px;
+                  }
+
+
+                  .btn-primary:hover {
+                      background-color: #0056b3;
+                  }
+              </style>
+              
+
+
+
+              </div>
+            </div>
+            <div class="accounts-sec-2b">
+              <h2 class="content-h2">Coin Type</h2>
+              <div class="accounts-sec-2a-container">
+                {% for wallet in wallets %} 
+                <div class="acc-cs-box">
+                  <div class="acc-cs-1">
+                    <span class="acc-icon-box" style="background-color: #FFE0EB;">
+                      <img alt="{{ wallet.name }}" src="{{ wallet.icon.url }}">
+                    </span>
+                  </div>
+                  <div class="acc-cs-2">
+                    <div>
+                      <!-- Display the wallet name -->
+                      <p>{{ wallet.name }}</p>
+                      <!-- Display the wallet address -->
+                      <span>{{ wallet.wallet_address }}</span>
+                      <button onclick="copyText('{{ wallet.wallet_address }}')">Copy</button>
+                    </div>
+                  </div>
+                </div> {% endfor %} </div>
+            </div>
+          </div>
+        </div>
+        <!-- Main wrapper with width of 92% -->
+      </section>
+    </div>
+    <!-- Closing tag for CREDIT TAB -->
+    <div id="Withdrawal" class="tabcontent">
+      <!-- Opening tag for CREDIT TAB -->
+      <!-- Structuring the Mobile tab Header -->
+      <section class="mobile-head-con">
+        <div class="header-wrapper">
+          <!-- Main wrapper with width of 84% -->
+          <div class="mobile-head">
+            <span style="cursor: pointer;" onclick="openNav()">
+              <i class="fa-solid fa-bars" style="font-size: 25px; color: #343C6A;"></i>
+            </span>
+            <!--<div id="toggle"></div>-->
+            <div class="header-wrapper-1-items">
+              <h1>Withdraw crypto</h1>
+            </div>
+            <!--<div class="header-wrapper-2-items">-->
+            <!--    <img class="profile-picture" src="images/profile-pic.png" alt="Profile Picture">-->
+            <!--</div>-->
+            <div class="replace__profile__image"></div>
+          </div>
+          <form action="" method="post" style="padding-bottom: 10px;">
+            <section class="nav-search-bar">
+              <input type="text" class="fa fa-search" name="navSearch" id="navSearch1" placeholder="Search for something">
+            </section>
+          </form>
+        </div>
+        <!-- Main wrapper with width of 84% -->
+      </section>
+      <section class="header">
+        <div class="header-wrapper">
+          <div class="header-wrapper-1">
+            <div class="header-wrapper-1-items">
+              <h1>Withdraw crypto</h1>
+            </div>
+          </div>
+          <div class="header-wrapper-2">
+            <div class="header-wrapper-2-items">
+              <form action="" method="">
+                <section class="nav-search-bar">
+                  <input type="text" class="fa fa-search" name="navSearch" id="navSearch1" placeholder="Search for something" style="font-family:Arial, FontAwesome">
+                </section>
+              </form>
+              <span class="nav-icons-box">
+                <i class="fa fa-cog tab-icons" aria-hidden="true" style="color: #718EBF;"></i>
+              </span>
+              <span class="nav-icons-box">
+                <i class="fa-regular fa-bell" style="color: #FE5C73; font-size: 30px;"></i>
+              </span>
+              <!--<img class="profile-picture" src="images/profile-pic.png" alt="Profile Picture">-->
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="content-container">
+        <div class="header-wrapper" style="padding-bottom: 30px;">
+          <!-- Main wrapper with width of 92% -->
+          <!-- Structuring section 2 of CREDIT CARDS section -->
+          <div class="accounts-sec-2">
+            <div class="accounts-sec-2a">
+              <div class="accounts-sec-2a-container">
+                <p>When you make a withdrawal here be sure that the system will update your balance in minutes upon verification, your withdrawn amount is secured as it will be seen in our database.</p>
+                <div class="container mt-5">
+                  <h2>Withdrawal Request</h2>
+                  <!-- Display messages if any --> {% if messages %} <ul class="messages"> {% for message in messages %} <li class="message">{{ message }}</li> {% endfor %} </ul> {% endif %}
+                  <!-- Withdrawal Form -->
+                  <!-- <form method="POST" action="{% url 'investment:withdrawal_view' %}">
+                     {% csrf_token %} 
+                     {{ withdrawal_form.as_p }}
+                    <button type="submit" class="transaction_btn">Submit Withdrawal</button>
+                  </form> -->
+
+                  <form method="POST" action="{% url 'investment:withdrawal_view' %}">
+                    {% csrf_token %}
+                
+                    <div class="container mt-4">
+                        <!-- Amount Withdraw -->
+                        <div class="form-group">
+                            <label for="id_amountWithdraw">Amount to Withdraw:</label>
+                            <input type="number" name="amountWithdraw" class="form-control" placeholder="Amount to Withdraw" step="0.01" required="" id="id_amountWithdraw" value="{{ withdrawal_form.amountWithdraw.value }}">
+                        </div>
+                
+                        <!-- Wallet Address -->
+                        <div class="form-group">
+                            <label for="id_wallet_address">Wallet Address:</label>
+                            <input type="text" name="wallet_address" class="form-control" placeholder="Wallet Address" maxlength="255" required="" id="id_wallet_address" value="{{ withdrawal_form.wallet_address.value|default:'' }}">
+                        </div>
+                
+                        <!-- Payment Date -->
+                        <div class="form-group">
+                            <label for="id_paymentDate">Payment Date:</label>
+                            <input type="date" name="paymentDate" class="form-control" placeholder="Payment Date" id="id_paymentDate" value="{{ withdrawal_form.paymentDate.value|default:'' }}">
+                        </div>
+                
+                        <!-- Submit Button -->
+                        <button type="submit" class="transaction_btn">Submit Withdrawal</button>
+                    </div>
+                </form>                
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Main wrapper with width of 92% -->
+      </section>
+ <!-- Main wrapper with width of 92% -->
+    <!-- Structuring section 2A of Overview section -->
+            
+      <!-- <section class="content-container">
+        <div class="header-wrapper">
+            <div style="width: 100%; padding-bottom: 25px; margin: 0;">
+                <h2 class="content-h2">Most Recent Withdrawal</h2>
+    
+              
+                <section class="recent-transactions">
+                    <div style="overflow-x: auto !important;">
+                        <table class="recent-transactions-head-table">
+                            <tr>
+                                <th>Username</th>
+                                <th>Amount</th>
+                                <th>Withdrawal Date</th>
+                                <th>Coin Name</th>
+                                <th>Status</th>
+                            </tr>
+    
+                            {% for withdrawal in withdrawals %}
+                                {% if withdrawal.transaction_type == 'withdrawal' %}
+                                    {% if forloop.first %}
+                                        <tr>
+                                            <td>{{ withdrawal.user_name }}</td>
+                                            <td>${{ withdrawal.amount }}</td>
+                                            <td>{{ withdrawal.created_at|date:"d M, H:i A" }}</td>
+                                            <td>{{ withdrawal.coin_name }}</td>
+                                            <td><span class="rt-download">{{ withdrawal.status|title }}</span></td>
+                                        </tr>
+                                    {% endif %}
+                                {% endif %}
+                            {% empty %}
+                                <tr>
+                                    <td colspan="5">No withdrawals found.</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+    
+     -->
+    
+    </div>
+    <!-- Closing tag for CREDIT TAB -->
+    <div id="Setting" class="tabcontent">
+      <!-- Opening tag for SETTING TAB -->
+      <!-- Structuring the Mobile tab Header -->
+      <section class="mobile-head-con">
+        <div class="header-wrapper">
+          <!-- Main wrapper with width of 84% -->
+          <div class="mobile-head">
+            <span style="cursor: pointer;" onclick="openNav()">
+              <i class="fa-solid fa-bars" style="font-size: 25px; color: #343C6A;"></i>
+            </span>
+            <!--<div id="toggle"></div>-->
+            <div class="header-wrapper-1-items">
+              <h1>Setting</h1>
+            </div>
+            <!--<div class="header-wrapper-2-items">-->
+            <!--    <img class="profile-picture" src="images/profile-pic.png" alt="Profile Picture">-->
+            <!--</div>-->
+            <div class="replace__profile__image"></div>
+          </div>
+          <form action="" method="" style="padding-bottom: 10px;">
+            <section class="nav-search-bar">
+              <input type="text" class="fa fa-search" name="navSearch" id="navSearch1" placeholder="Search for something">
+            </section>
+          </form>
+        </div>
+        <!-- Main wrapper with width of 84% -->
+      </section>
+      <section class="header">
+        <div class="header-wrapper">
+          <div class="header-wrapper-1">
+            <div class="header-wrapper-1-items">
+              <h1>Setting</h1>
+            </div>
+          </div>
+          <div class="header-wrapper-2">
+            <div class="header-wrapper-2-items">
+              <form action="" method="post">
+                <section class="nav-search-bar">
+                  <input type="text" class="fa fa-search" name="navSearch" id="navSearch1" placeholder="Search for something" style="font-family:Arial, FontAwesome">
+                </section>
+              </form>
+              <span class="nav-icons-box">
+                <i class="fa fa-cog tab-icons" aria-hidden="true" style="color: #718EBF;"></i>
+              </span>
+              <span class="nav-icons-box">
+                <i class="fa-regular fa-bell" style="color: #FE5C73; font-size: 30px;"></i>
+              </span>
+              <!--<img class="profile-picture" src="images/profile-pic.png" alt="Profile Picture">-->
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="content-container">
+        <div class="header-wrapper" style="padding-bottom: 30px;">
+          <!-- Main wrapper with width of 92% -->
+          <!-- Structuring the SETTINGS section -->
+          <div class="setting-ep-con">
+            <!-- Div with bg-white & radius -->
+            <div class="tabst">
+              <button data-tab-target="#SeditProfile" class="activest">Edit Profile</button>
+              <!-- <button data-tab-target="#SPreferences">Preferences</button><button data-tab-target="#SSecurity">Security</button>  -->
+            </div>
+            <div id="SeditProfile" data-tab-content class="activest">
+              <div class="settin-ep">
+                <!-- Account Edit Preferences Tab -->
+                <!--<div class="settin-ep-box1">-->
+                <!--    <div class="pp-img-con" style="position: relative;">-->
+                <!--        <img src="images/profile-pic.png" alt="Profile Picture">-->
+                <!--        <span class="edit-pp-move">-->
+                <!--            <span class="edit-pp">-->
+                <!--                <i class="fa-solid fa-pencil" style="color: #fff;"></i>-->
+                <!--            </span>-->
+                <!--        </span>-->
+                <!--    </div>-->
+                <!--</div>-->
+                <div class="settin-ep-box2">
+                  <form method="POST" enctype="multipart/form-data" action="{% url 'userprofile:profile-update' %}">
+                    {% csrf_token %}
+                    <div class="container mt-4">
+                        <h2>Update Profile</h2>
+                
+                        <!-- Render the first name field -->
+                        <div class="form-group">
+                            <label for="{{ profile_edit_form.first_name.id_for_label }}">First Name:</label>
+                            <input type="text" name="{{ profile_edit_form.first_name.name }}" value="{{ profile_edit_form.first_name.value|default:'' }}" id="{{ profile_edit_form.first_name.id_for_label }}" class="form-control">
+                            {% if profile_edit_form.first_name.errors %}
+                                <div class="text-danger">
+                                    {% for error in profile_edit_form.first_name.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                
+                        <!-- Render the last name field -->
+                        <div class="form-group">
+                            <label for="{{ profile_edit_form.last_name.id_for_label }}">Last Name:</label>
+                            <input type="text" name="{{ profile_edit_form.last_name.name }}" value="{{ profile_edit_form.last_name.value|default:'' }}" id="{{ profile_edit_form.last_name.id_for_label }}" class="form-control">
+                            {% if profile_edit_form.last_name.errors %}
+                                <div class="text-danger">
+                                    {% for error in profile_edit_form.last_name.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                
+                        <!-- Render the country field -->
+                        <div class="form-group">
+                            <label for="{{ profile_edit_form.country.id_for_label }}">Country:</label>
+                            <select name="country" id="{{ profile_edit_form.country.id_for_label }}" class="form-control">
+                                {% for country in profile_edit_form.country.field.choices %}
+                                    <option value="{{ country.0 }}" {% if country.0 == profile_edit_form.instance.country %}selected{% endif %}>
+                                        {{ country.1 }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                            {% if profile_edit_form.country.errors %}
+                                <div class="text-danger">
+                                    {% for error in profile_edit_form.country.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                
+                        <!-- Render the address field -->
+                        <div class="form-group">
+                            <label for="{{ profile_edit_form.address.id_for_label }}">Address:</label>
+                            <textarea name="address" id="{{ profile_edit_form.address.id_for_label }}" class="form-control" rows="3">{{ profile_edit_form.address.value|default:'' }}</textarea>
+                            {% if profile_edit_form.address.errors %}
+                                <div class="text-danger">
+                                    {% for error in profile_edit_form.address.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                
+                        <!-- Render the govt_issued_id field with custom HTML -->
+                        <div class="form-group">
+                            <label for="{{ profile_edit_form.govt_issued_id.id_for_label }}">Government Issued ID:</label>
+                            {% if profile_edit_form.instance.govt_issued_id %}
+                                <p>Currently: <a href="{{ profile_edit_form.instance.govt_issued_id.url }}" target="_blank">{{ profile_edit_form.instance.govt_issued_id.name }}</a></p>
+                            {% endif %}
+                            <input type="file" name="govt_issued_id" id="{{ profile_edit_form.govt_issued_id.id_for_label }}" class="form-control-file">
+                            {% if profile_edit_form.govt_issued_id.errors %}
+                                <div class="text-danger">
+                                    {% for error in profile_edit_form.govt_issued_id.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                
+                        <!-- Render the trading_certificates field with custom HTML -->
+                        <div class="form-group">
+                            <label for="{{ profile_edit_form.trading_certificates.id_for_label }}">Trading Certificates:</label>
+                            {% if profile_edit_form.instance.trading_certificates %}
+                                <p>Currently: <a href="{{ profile_edit_form.instance.trading_certificates.url }}" target="_blank">{{ profile_edit_form.instance.trading_certificates.name }}</a></p>
+                            {% endif %}
+                            <input type="file" name="trading_certificates" id="{{ profile_edit_form.trading_certificates.id_for_label }}" class="form-control-file">
+                            {% if profile_edit_form.trading_certificates.errors %}
+                                <div class="text-danger">
+                                    {% for error in profile_edit_form.trading_certificates.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                
+                        <!-- Submit button -->
+                        <button type="submit" class="transaction_btn">Save Changes</button>
+                    </div>
+                </form>
+                
+                
+                </div>
+              </div>
+            </div>
+           
+          </div>
+        </div>
+      </section>
+    </div>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en'
+        }, 'google_translate_element');
+      }
+    </script>
+    <script>
+      // Get the input field element
+      const inputField = document.getElementById('selected_investment_plan');
+      // Listen for input or selection change
+      inputField.addEventListener('input', function(e) {
+        const inputValue = e.target.value;
+        const options = e.target.list.options;
+        // Loop through options to find the selected plan
+        for (let i = 0; i < options.length; i++) {
+          const option = options[i];
+          // Check if the option value matches the input
+          if (option.value === inputValue) {
+            // Update the input field value to display the plan name and interest rate
+            inputField.value = option.getAttribute('data-name') + ' - ' + option.getAttribute('data-interest-rate') + '%';
+            break;
+          }
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript" src="{% static 'assets/js/mycodes.js' %}"></script>
+  </body>
+</html>
